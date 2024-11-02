@@ -8,7 +8,12 @@ const api = {
   showFilePaths: (files: File[]): FileInfo[] => {
     return files.map((file) => {
       const fullpath = webUtils.getPathForFile(file)
-      return { fullpath, dirname: path.dirname(fullpath), basename: path.basename(fullpath) }
+      return {
+        fullpath,
+        dirname: path.dirname(fullpath),
+        basename: path.basename(fullpath),
+        ext: path.extname(fullpath)
+      }
     })
   }
 }

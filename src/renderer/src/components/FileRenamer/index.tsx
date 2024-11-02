@@ -1,6 +1,7 @@
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useEffect, useMemo, useState } from 'react'
 import { container, dndArea, filesArea } from './style.css'
 import { FileInfo } from '@renderer/env'
+import { log } from 'console'
 
 export const FileRenamer: React.FC = () => {
   const dndRef = createRef<HTMLDivElement>()
@@ -19,6 +20,13 @@ export const FileRenamer: React.FC = () => {
     preventDefault(e)
     setFiles(window.api.showFilePaths(Array.from(e.dataTransfer?.files ?? ([] as File[]))))
   }
+
+  const renamedFiles: string[] = useMemo(() => {
+    if (files.length === 0) return []
+    return files.map((file, index) => {
+      return `${index + 1}${file.ext}`
+    })
+  }, [files])
 
   useEffect(() => {
     dndRef.current?.addEventListener('dragover', onDragOver)
@@ -41,6 +49,13 @@ export const FileRenamer: React.FC = () => {
             <div>{file.fullpath}</div>
             <div>dir: {file.dirname}</div>
             <div>file: {file.basename}</div>
+          </div>
+        ))}
+      </div>
+      <div className={filesArea}>
+        {renamedFiles.map((file, index) => (
+          <div key={index}>
+            <div>renamed: {file}</div>
           </div>
         ))}
       </div>

@@ -29,6 +29,8 @@ export const filesArea = style([
   {
     width: '100%',
     minHeight: '80px',
+    maxHeight: '120px',
+    overflow: 'scroll',
     flex: 1,
     border: '1px solid lightgray'
   }
