@@ -1,6 +1,5 @@
 import { createRef, useEffect, useState } from 'react'
 import { container, dndArea, filesArea } from './style.css'
-import path from 'path'
 import { FileInfo } from '@renderer/env'
 
 export const FileRenamer: React.FC = () => {
@@ -33,7 +32,7 @@ export const FileRenamer: React.FC = () => {
 
   return (
     <div className={container}>
-      <div className={dndArea} ref={dndRef}>
+      <div className={dndArea} ref={dndRef} draggable>
         drag here
       </div>
       <div className={filesArea}>
