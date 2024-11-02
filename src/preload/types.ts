@@ -1,4 +1,3 @@
-/// <reference types="vite/client" />
 export type FileInfo = {
   fullpath: string
   dirname: string
